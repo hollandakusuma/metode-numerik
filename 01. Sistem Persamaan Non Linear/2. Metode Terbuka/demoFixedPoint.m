@@ -30,8 +30,7 @@ maxIterasi = 50;
 
 [solusi1, tabel1, konvergen1] = fixedPointIteration(gFungsi1, x0_1, toleransi, maxIterasi);
 
-% Plot konvergensi kasus 1
-plotKonvergensi(tabel1, 'Kasus 1: x = sqrt(x+2)', konvergen1);
+plotKonvergensi(tabel1, 'Kasus 1: x = sqrt(x+2)', konvergen1, gFungsi1);
 
 
 % =========================================================
@@ -46,7 +45,7 @@ x0_2     = 1.0;
 
 [solusi2, tabel2, konvergen2] = fixedPointIteration(gFungsi2, x0_2, toleransi, maxIterasi);
 
-plotKonvergensi(tabel2, 'Kasus 2: x = (x+1)^(1/3)', konvergen2);
+plotKonvergensi(tabel2, 'Kasus 2: x = (x+1)^(1/3)', konvergen2, gFungsi2);
 
 
 % =========================================================
@@ -60,7 +59,7 @@ x0_3     = 0.5;
 
 [solusi3, tabel3, konvergen3] = fixedPointIteration(gFungsi3, x0_3, toleransi, 200);
 
-plotKonvergensi(tabel3, 'Kasus 3: x = cos(x)', konvergen3);
+plotKonvergensi(tabel3, 'Kasus 3: x = cos(x)', konvergen3, gFungsi3);
 
 
 % =========================================================
@@ -89,54 +88,3 @@ fprintf('  %-8s  %-30s  %-15.8f  %-10s\n', '2', 'x = (x+1)^(1/3)',  solusi2, sta
 fprintf('  %-8s  %-30s  %-15.8f  %-10s\n', '3', 'x = cos(x)',       solusi3, statusStr(konvergen3));
 fprintf('  %-8s  %-30s  %-15.8f  %-10s\n', '4', 'x = x^2 - 1',     solusi4, statusStr(konvergen4));
 fprintf('*****************************************************\n\n');
-
-
-% =========================================================
-% FUNGSI BANTU (helper) - didefinisikan di bawah script
-% =========================================================
-
-function plotKonvergensi(iterTable, judulPlot, isConverged)
-% Membuat plot konvergensi nilai x dan error tiap iterasi
-
-    if isempty(iterTable)
-        return;
-    end
-
-    iterVec   = iterTable(:, 1);
-    xBaruVec  = iterTable(:, 3);
-    errorVec  = iterTable(:, 4);
-
-    figure;
-
-    % --- Subplot 1: Nilai x tiap iterasi ---
-    subplot(2, 1, 1);
-    plot(iterVec, xBaruVec, 'b-o', 'LineWidth', 1.5, 'MarkerSize', 5, ...
-         'MarkerFaceColor', 'b');
-    xlabel('Iterasi ke-');
-    ylabel('Nilai x');
-    title(['Konvergensi Nilai x  |  ' judulPlot]);
-    grid on;
-    if isConverged
-        legend('x converged', 'Location', 'best');
-    end
-
-    % --- Subplot 2: Error absolut tiap iterasi (skala log) ---
-    subplot(2, 1, 2);
-    semilogy(iterVec, errorVec, 'r-s', 'LineWidth', 1.5, 'MarkerSize', 5, ...
-             'MarkerFaceColor', 'r');
-    xlabel('Iterasi ke-');
-    ylabel('Error Absolut (log scale)');
-    title('Penurunan Error Absolut');
-    grid on;
-    legend('|x_{baru} - x_{lama}|', 'Location', 'best');
-end
-
-
-function str = statusStr(isConverged)
-% Mengembalikan string status konvergensi
-    if isConverged
-        str = 'Konvergen';
-    else
-        str = 'Divergen';
-    end
-end
