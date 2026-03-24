@@ -29,7 +29,7 @@ if Fa*Fb<0
     fprintf('\n=====================================================================================\n');
     fprintf('            METODE BISEKSI (BAGI DUA)\n');
     fprintf('=======================================================================================\n');
-    fprintf(' Iter |      a         |      b         |      c         |     f(c)       |   Error(%%)\n');
+    fprintf(' Iter |      a         |      b         |      c         |     f(c)       |   Error\n');
     fprintf('------+----------------+----------------+----------------+----------------+----------\n');
     
     % A. Lakukan iterasi
@@ -39,7 +39,7 @@ if Fa*Fb<0
         FxNS=F(xNS);
         Fa=F(a);
         Fb=F(b);
-        fprintf(' %4d | %14.8f | %14.8f | %14.8f | %14.8f | %9.5f%%\n', ...
+        fprintf(' %4d | %14.8f | %14.8f | %14.8f | %14.8f | %9.5f\n', ...
             i, a, b, xNS, FxNS, toli);
         hold on
         scatter(a,Fa,50,log(i),'filled')
