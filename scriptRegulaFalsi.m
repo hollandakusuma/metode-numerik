@@ -27,7 +27,7 @@ Fb0=Fb;
 %4. Lakukan Pencarian nilai F(x) = 0
 if Fa*Fb<0
     fprintf('\n=====================================================================================\n');
-    fprintf('            METODE BISEKSI (BAGI DUA)\n');
+    fprintf('            METODE REGULA FALSI\n');
     fprintf('=======================================================================================\n');
     fprintf(' Iter |      a         |      b         |      c         |     f(c)       |   Error(%%)\n');
     fprintf('------+----------------+----------------+----------------+----------------+----------\n');
@@ -37,11 +37,13 @@ if Fa*Fb<0
         xNS=(a+b)/2; %hitung solusi numerik xNS pada iterasi ke-i
         toli=(b-a)/2; %hitung toleransi iterasi ke-i
         FxNS=F(xNS);
+        Fa=F(a);
+        Fb=F(b);
         fprintf(' %4d | %14.8f | %14.8f | %14.8f | %14.8f | %9.5f%%\n', ...
             i, a, b, xNS, FxNS, toli);
         hold on
-        scatter(a0,Fa0,50,'dc','filled')
-        scatter(b0,Fb0,50,'dc','filled')
+        scatter(a,Fa,50,log(i),'filled')
+        scatter(b,Fb,50,log(i),'filled')
         
         if FxNS == 0
             fprintf('solusi ditemukan pada x=%11.6f\n',xNS);
@@ -62,12 +64,14 @@ if Fa*Fb<0
         end
     end
     
-    %B. Jika Tidak terjadi Iterasi
 else
     error('f(a) dan f(b) harus berbeda tanda. Periksa interval [a, b].');
 end
 
 % 4. Buat Grafik nya
 
-scatter(xNS,FxNS,100,'or','filled');
+scatter(xNS,FxNS,50,'dr','filled');
+line([xNS xNS],[0 -20],'color',[1 0 0])
+line([0 xNS],[0 0],'color',[1 0 0])
+
 
