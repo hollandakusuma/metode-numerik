@@ -6,8 +6,6 @@
 %  Pastikan semua file berikut ada dalam satu folder:
 %    - gaussJordan.m
 %    - cetakRingkasan.m
-%    - plotSistem2x2.m
-%    - plotSistem3x3.m
 %
 %  Jalankan: demoGaussJordan
 % =========================================================
@@ -36,8 +34,6 @@ A1 = [ 2  1 -1;
 b1 = [8; -11; -3];
 
 [x1, M1, sing1] = gaussJordan(A1, b1);
-plotSistem3x3(A1, b1, x1, 'Kasus 1: Sistem 3x3');
-
 
 % =========================================================
 % KASUS 2: Sistem 4x4
@@ -56,11 +52,9 @@ A2 = [1 2 1 1;
 b2 = [5; 16; 22; 15];
 
 [x2, M2, sing2] = gaussJordan(A2, b2);
-plotSistem3x3(A2, b2, x2, 'Kasus 2: Sistem 4x4');
-
 
 % =========================================================
-% KASUS 3: Sistem 2x2 — visualisasi geometri dua garis
+% KASUS 3: Sistem 2x2 
 %   2x + 3y = 7
 %   4x -  y = 1
 % =========================================================
@@ -71,8 +65,6 @@ A3 = [2  3;
 b3 = [7; 1];
 
 [x3, M3, sing3] = gaussJordan(A3, b3);
-plotSistem2x2(A3, b3, x3, 'Kasus 3: Sistem 2x2');
-
 
 % =========================================================
 % KASUS 4: Matriks SINGULAR
@@ -86,7 +78,6 @@ A4 = [1 1;
 b4 = [2; 5];
 
 [x4, M4, sing4] = gaussJordan(A4, b4);
-
 
 % =========================================================
 % RINGKASAN SEMUA KASUS
